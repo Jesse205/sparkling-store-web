@@ -1,0 +1,12 @@
+{
+    "name": "欢迎使用云储2021版Api",
+    "time": 1673022535,
+    "msg": "操作成功",
+    "state": 200,
+    "data":[
+        {
+            "icon":"/icons/android-chrome-192x192.png",
+            "name":"Aide Lua Pro"
+        }
+    ]
+}

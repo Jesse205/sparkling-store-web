@@ -1,5 +1,8 @@
 <script setup>
-import { ref, mergeProps, onActivated, onDeactivated,inject} from "vue";
+import { ref, onActivated, onDeactivated, inject } from "vue";
+import { useUserStore } from '@/store/user';
+
+const userStore = useUserStore()
 
 const appName = inject('appName')
 
@@ -40,10 +43,10 @@ onDeactivated(() => {
 </script>
 <template>
     <v-app>
-        <!-- 应用栏 -->
-        <v-app-bar color="primary">
+        <!-- 应用栏 density="comfortable" -->
+        <v-app-bar flat border="b">
             <v-app-bar-nav-icon class="hidden-sm-and-down" variant="text" @click.stop="drawer = !drawer" />
-            <v-toolbar-title>粼光商店</v-toolbar-title>
+            <v-app-bar-title>{{ appName }}</v-app-bar-title>
             <v-spacer />
             <v-tooltip location="bottom" transition="fade-transition">
                 <template v-slot:activator="{ props }">
@@ -52,30 +55,28 @@ onDeactivated(() => {
                 <span>搜索应用</span>
             </v-tooltip>
 
-            <!-- scale-transition的效果最好，但是bug也很离谱，蓑衣就用类似安卓5的fade-transition -->
-            <v-menu :width="196" offset="-64" transition="fade-transition">
+            <v-menu :width="196" scroll-strategy="close" origin="overlap">
                 <template v-slot:activator="{ props: menu }">
-                    <v-tooltip location="bottom" transition="fade-transition">
-                        <template v-slot:activator="{ props: tooltip }">
-                            <v-btn icon="mdi-dots-vertical" v-bind="mergeProps(menu, tooltip)" />
-                        </template>
-                        <span>更多选项</span>
-                    </v-tooltip>
+                    <v-btn icon="mdi-dots-vertical" v-bind="menu" />
                 </template>
                 <v-list>
                     <v-list-item link title="上传应用" />
-                    <v-list-item link title="退出登录" />
+                    <v-list-item link :title="userStore.loginState ? '退出登录' : '登录'"
+                        @click="userStore.loginState ? userStore.logout() : userStore.login()" />
                 </v-list>
             </v-menu>
+
         </v-app-bar>
+        <v-divider />
 
         <!-- 侧滑栏 -->
         <!-- 放到div里面屏蔽滑动 -->
         <div class="hidden-sm-and-down">
             <v-navigation-drawer v-model="drawer">
                 <v-list>
-                    <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Jesse205"
-                        subtitle="jesse205@foxmail.com" />
+                    <v-list-item :prepend-avatar="userStore.avatar"
+                        :title="userStore.nameShow"
+                        :subtitle="userStore.loginState && userStore.email" />
                 </v-list>
                 <v-divider></v-divider>
                 <v-list density="compact" nav color="primary">
@@ -95,10 +96,11 @@ onDeactivated(() => {
             </v-container>
         </v-main>
         <!-- 底部导航栏 -->
-        <v-bottom-navigation grow class="hidden-md-and-up" color="primary" mandatory>
-            <v-btn class="hideBtnOverlay" v-for="item in pages" :key="item.name" :to="{ name: item.name }" replace>
+        <v-bottom-navigation grow class="hidden-md-and-up" color="primary" mandatory border="t" :elevation="0">
+            <v-btn variant="plain" v-for="item in pages" :key="item.name" :to="{ name: item.name }" replace>
                 <v-icon>{{ $route.name == item.name ? item.activeIcon : item.icon }}</v-icon>
                 {{ item.title }}
+
             </v-btn>
         </v-bottom-navigation>
     </v-app>

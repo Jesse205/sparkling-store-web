@@ -4,7 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/MainPage/MainPage.vue'),
+    component: () => import('@/views/MainView/MainView.vue'),
     children: [
       {
         path: '/',
@@ -13,22 +13,22 @@ const routes = [
       {
         path: 'home',
         name: 'Home',
-        component: () => import('@/views/MainPage/MainHome.vue'),
+        component: () => import('@/views/MainView/MainHomeView.vue'),
       },
       {
         path: 'sort',
         name: 'Sort',
-        component: () => import('@/views/MainPage/MainSort.vue'),
+        component: () => import('@/views/MainView/MainSortView.vue'),
       },
       {
         path: 'update',
         name: 'Update',
-        component: () => import('@/views/MainPage/MainUpdate.vue'),
+        component: () => import('@/views/MainView/MainUpdateView.vue'),
       },
       {
         path: 'me',
         name: 'Me',
-        component: () => import('@/views/MainPage/MainMe.vue'),
+        component: () => import('@/views/MainView/MainMeView.vue'),
       },
     ],
   },

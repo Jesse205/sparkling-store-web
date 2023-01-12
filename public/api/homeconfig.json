@@ -1,0 +1,25 @@
+{
+    "name": "欢迎使用云储2021版Api",
+    "time": 1673022535,
+    "msg": "操作成功",
+    "state": 200,
+    "data": {
+        "banners": {
+            "ratio": 2.25,
+            "data": [
+                {
+                    "image": "https://linguang.top/Banner/banner1.png",
+                    "src": "https://bwcxlg.top/"
+                },
+                {
+                    "image": "https://linguang.top/Banner/banner2.png",
+                    "src": "https://bwcxlg.top/"
+                },
+                {
+                    "image": "https://linguang.top/Banner/banner3.png",
+                    "src": "https://bwcxlg.top/"
+                }
+            ]
+        }
+    }
+}

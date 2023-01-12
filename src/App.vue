@@ -1,18 +1,30 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
+//import { ref } from 'vue'
+import { useStore } from '@/store/index';
 import { useTheme } from 'vuetify'
+const store = useStore()
 const theme = useTheme()
 
 // 自动设置暗色模式
-let colorSchemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
-const themeMode = ref(colorSchemeMedia.matches ? 'dark' : 'light')
-colorSchemeMedia.addListener(() => {
-  themeMode.value = colorSchemeMedia.matches ? 'dark' : 'light'
-})
+let colorSchemeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+theme.global.name.value = colorSchemeMediaQuery.matches ? 'dark' : 'light';
+let onColorSchemeChanged = () => {
+  theme.global.name.value = colorSchemeMediaQuery.matches ? 'dark' : 'light';
+}
 
-watchEffect(() => {
-  theme.global.name.value = themeMode.value
-})
+// 添加颜色模式监听
+try {
+  // Chrome & Firefox
+  colorSchemeMediaQuery.addEventListener('change', onColorSchemeChanged);
+} catch (e1) {
+  try {
+    // Safari
+    colorSchemeMediaQuery.addListener(onColorSchemeChanged);
+  } catch (e2) {
+    console.error(e1);
+    console.error(e2);
+  }
+}
 
 </script>
 
@@ -22,7 +34,9 @@ watchEffect(() => {
       <component :is="Component" />
     </keep-alive>
   </router-view>
+  <v-snackbar v-model="store.snackbar">{{ store.snackbarText }}</v-snackbar>
 </template>
+
 <style>
 /* 调整容器最大宽度 */
 @media (min-width: 1280px) {
@@ -36,22 +50,12 @@ watchEffect(() => {
   display: none;
 }
 
-/* 隐藏按钮背景 */
-.hideBtnOverlay .v-btn__overlay {
-  display: none;
-}
-
 .v-icon--size-default {
   font-size: 24px !important;
 }
 
-
-/* 底栏图标改为灰色 */
-.v-theme--light .v-bottom-navigation .v-btn:not(.v-btn--active) {
-  color: rgba(0, 0, 0, .6) !important;
-}
-
-.v-theme--dark .v-bottom-navigation .v-btn:not(.v-btn--active) {
-  color: rgba(255, 255, 255, 0.6) !important;
+/* 选中的图标不变灰 */
+.v-btn--active.v-btn--variant-plain {
+  opacity: 1 !important;
 }
 </style>

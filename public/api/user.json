@@ -1,0 +1,23 @@
+{
+    "name": "欢迎使用云储2021版Api",
+    "time": 1673022535,
+    "msg": "操作成功",
+    "state": 200,
+    "data": {
+        "avatar":"https://q1.qlogo.cn/g?b=qq&nk=2055675594&s=640",
+        "user_name": "Jesse205",
+        "email": "jesse205@qq.com",
+        "uid": 66666666666,
+        "registered_time": "2021-11-26 10:46:09",
+        "apps_count": 100,
+        "developer_type": [
+            "Android",
+            "Windows",
+            "Web",
+            "Mac",
+            "Linux",
+            "HarmonyOS",
+            "OpenHarmony"
+        ]
+    }
+}

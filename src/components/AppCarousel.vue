@@ -20,7 +20,7 @@ defineProps({
 
 <template>
     <!-- 卡片提供边框 -->
-    <v-card class="rounded-lg" border flat>
+    <v-card border rounded="lg" flat>
         <v-responsive :aspect-ratio="aspectRatio" :style="{ 'spect-ratio': aspectRatio }">
             <v-carousel :continuous="continuous" :show-arrows="showArrows" :cycle="cycle" hide-delimiters height="100%"
                 v-bind="$attrs">
