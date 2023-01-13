@@ -29,12 +29,21 @@ try {
 </script>
 
 <template>
-  <router-view v-slot="{ Component }">
-    <keep-alive :max="10">
-      <component :is="Component" />
-    </keep-alive>
-  </router-view>
-  <v-snackbar v-model="store.snackbar">{{ store.snackbarText }}</v-snackbar>
+  <v-app>
+    <!-- <v-system-bar window>
+      <v-spacer></v-spacer>
+      <v-btn icon="mdi-minus" variant="text"></v-btn>
+      <v-btn icon="mdi-checkbox-blank-outline" variant="text" class="ml-2"></v-btn>
+      <v-btn icon="mdi-close" variant="text" class="ml-2"></v-btn>
+    </v-system-bar> -->
+    <v-divider/>
+    <router-view v-slot="{ Component }">
+      <keep-alive :max="10">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
+    <v-snackbar v-model="store.snackbar">{{ store.snackbarText }}</v-snackbar>
+  </v-app>
 </template>
 
 <style>

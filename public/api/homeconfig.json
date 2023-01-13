@@ -5,11 +5,11 @@
     "state": 200,
     "data": {
         "banners": {
-            "ratio": 2.25,
+            "ratio": 2.3,
             "data": [
                 {
                     "image": "https://linguang.top/Banner/banner1.png",
-                    "src": "https://bwcxlg.top/"
+                    "src": null
                 },
                 {
                     "image": "https://linguang.top/Banner/banner2.png",

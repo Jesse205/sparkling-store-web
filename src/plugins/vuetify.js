@@ -10,23 +10,26 @@ import 'vuetify/styles'
 
 // Composables
 import { createVuetify } from 'vuetify'
+import { md2 } from 'vuetify/blueprints'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
+  blueprint: md2,
   theme: {
     // defaultTheme: 'light',
     options: { customProperties: true },
     themes: {
       light: {
         colors: {
-          primary: '#1867C0',
-          secondary: '#5CBBF6',
+          primary: '#FF5722',
+          secondary: '#FF9800',
+          surface: '#FFFFFF',
         },
       },
       dark: {
         colors: {
-          primary: '#1867C0',
-          secondary: '#5CBBF6',
+          primary: '#FF5722',
+          secondary: '#FF9800',
           surface: '#121212',
         },
       },

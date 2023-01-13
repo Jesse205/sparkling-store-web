@@ -9,7 +9,7 @@ defineProps({
     },
     continuous: {
         type: Boolean,
-        default: false
+        default: true
     },
     showArrows: {
         type: [Boolean, String],
@@ -27,8 +27,8 @@ defineProps({
                 <slot>
                     <v-carousel-item v-for="item in items" :key="item.src">
                         <!-- 自定义图片，支持链接点击与进度条 -->
-                        <a :href="sanitizeUrl(item.src)" target="_blank"
-                            :style="{ 'pointer-events': item.src ? 'auto' : 'none' }">
+                        <component :href="item.src ? sanitizeUrl(item.src) : null" :target="item.src ? '_blank' : null"
+                            :is="item.src ? 'a' : 'div'">
                             <v-img :aspect-ratio="aspectRatio" :src="item.image" cover>
                                 <template v-slot:placeholder>
                                     <div class="d-flex align-center justify-center fill-height">
@@ -37,7 +37,7 @@ defineProps({
                                     </div>
                                 </template>
                             </v-img>
-                        </a>
+                        </component>
                     </v-carousel-item>
                 </slot>
                 <!-- 前进后退按钮 -->
@@ -58,5 +58,8 @@ defineProps({
 .carousel-button {
     height: 40px !important;
     width: 40px !important;
+}
+:deep(.v-window__container){
+    height: 100% !important;
 }
 </style>

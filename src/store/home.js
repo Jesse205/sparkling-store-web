@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 
 export const useHomeStore = defineStore('home', () => {
-    const APP_CONFIG_URL = '/api/homeconfig.json'
+    const apiBaseUrl = inject('apiBaseUrl')
+    const APP_CONFIG_URL = apiBaseUrl + 'homeconfig.json'
     const config = ref(null)
     const carousels = ref()
-    const carouselRatio = ref(2.25)// 默认2.25
+    const carouselRatio = ref(2.3)// 默认2.3
+
     function loadAppConfig() {
         fetch(APP_CONFIG_URL)
             .then(response => response.json())
@@ -18,10 +20,13 @@ export const useHomeStore = defineStore('home', () => {
                 console.error(error);
             })
     }
+
+    const fragmentTitle = ref('')
     return {
         config,
         carousels,
         carouselRatio,
-        loadAppConfig
+        loadAppConfig,
+        fragmentTitle
     }
 })

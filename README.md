@@ -1,7 +1,9 @@
 # 粼光商店 V3 Web 版
 粼光商店 V3 Web 版是一款使用 Vue + Vuetify 开发的自由的应用商店客户端
+
 ## 仓库链接
-此窗口有两个链接，Gitee 为主，Github 为镜像
+此仓库有两个链接，Gitee 为主，Github 为镜像
+
 ## 安装工程
 
 ``` powershell

@@ -36,7 +36,8 @@ export default defineConfig({
         scope: '/',
         lang: 'zh-CN',
         display: 'standalone',
-        theme_color: '#1867C0',
+        //display_override: ['window-controls-overlay'],
+        theme_color: '#FF5722',
         icons: [
           {
             src: 'icons/android-chrome-192x192.png',

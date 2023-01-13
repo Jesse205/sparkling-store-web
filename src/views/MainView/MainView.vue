@@ -1,8 +1,10 @@
 <script setup>
 import { ref, onActivated, onDeactivated, inject } from "vue";
 import { useUserStore } from '@/store/user';
+import { useHomeStore } from '@/store/home';
 
 const userStore = useUserStore()
+const homeStore = useHomeStore()
 
 const appName = inject('appName')
 
@@ -33,6 +35,7 @@ const pages = [
         name: "Me",
     },
 ]
+
 onActivated(() => {
 })
 
@@ -42,11 +45,29 @@ onDeactivated(() => {
 
 </script>
 <template>
-    <v-app>
+ 
+
+  
+        <!-- 侧滑栏 -->
+        <!-- 放到div里面屏蔽滑动 -->
+        <div class="hidden-sm-and-down">
+            <v-navigation-drawer v-model="drawer">
+                <v-list lines="two">
+                    <v-list-item :prepend-avatar="userStore.avatar" :title="userStore.nameShow"
+                        :subtitle="userStore.loginState && userStore.email" link />
+                </v-list>
+                <v-divider></v-divider>
+                <v-list density="compact" nav color="primary">
+                    <v-list-item v-for="item in pages" :key="item.name" :to="{ name: item.name }" replace
+                        :prepend-icon="$route.name == item.name ? item.activeIcon : item.icon" :title="item.title"
+                        rounded />
+                </v-list>
+            </v-navigation-drawer>
+        </div>
         <!-- 应用栏 density="comfortable" -->
         <v-app-bar flat border="b">
             <v-app-bar-nav-icon class="hidden-sm-and-down" variant="text" @click.stop="drawer = !drawer" />
-            <v-app-bar-title>{{ appName }}</v-app-bar-title>
+            <v-app-bar-title>{{ homeStore.fragmentTitle }}</v-app-bar-title>
             <v-spacer />
             <v-tooltip location="bottom" transition="fade-transition">
                 <template v-slot:activator="{ props }">
@@ -55,7 +76,7 @@ onDeactivated(() => {
                 <span>搜索应用</span>
             </v-tooltip>
 
-            <v-menu :width="196" scroll-strategy="close" origin="overlap">
+            <v-menu :width="196" origin="overlap">
                 <template v-slot:activator="{ props: menu }">
                     <v-btn icon="mdi-dots-vertical" v-bind="menu" />
                 </template>
@@ -67,34 +88,20 @@ onDeactivated(() => {
             </v-menu>
 
         </v-app-bar>
-        <v-divider />
 
-        <!-- 侧滑栏 -->
-        <!-- 放到div里面屏蔽滑动 -->
-        <div class="hidden-sm-and-down">
-            <v-navigation-drawer v-model="drawer">
-                <v-list>
-                    <v-list-item :prepend-avatar="userStore.avatar"
-                        :title="userStore.nameShow"
-                        :subtitle="userStore.loginState && userStore.email" />
-                </v-list>
-                <v-divider></v-divider>
-                <v-list density="compact" nav color="primary">
-                    <v-list-item v-for="item in pages" :key="item.name" :to="{ name: item.name }" replace
-                        :prepend-icon="$route.name == item.name ? item.activeIcon : item.icon" :title="item.title" />
-                </v-list>
-            </v-navigation-drawer>
-        </div>
         <!-- 主视图 -->
         <v-main class="main">
-            <v-container class="fill-height py-2">
-                <router-view v-slot="{ Component }">
-                    <keep-alive>
-                        <component :is="Component" />
-                    </keep-alive>
-                </router-view>
-            </v-container>
+            <div class="fragments">
+                <v-container class="py-2">
+                    <router-view v-slot="{ Component }">
+                        <keep-alive>
+                            <component :is="Component" />
+                        </keep-alive>
+                    </router-view>
+                </v-container>
+            </div>
         </v-main>
+
         <!-- 底部导航栏 -->
         <v-bottom-navigation grow class="hidden-md-and-up" color="primary" mandatory border="t" :elevation="0">
             <v-btn variant="plain" v-for="item in pages" :key="item.name" :to="{ name: item.name }" replace>
@@ -103,13 +110,26 @@ onDeactivated(() => {
 
             </v-btn>
         </v-bottom-navigation>
-    </v-app>
+   
 </template>
 <style>
+html {
+    overflow-y: hidden;
+}
+
+.fragments {
+    overflow-y: auto;
+    height: calc(100vh - 120px)
+}
+
 @media (min-width: 960px) {
     .main {
         --v-layout-left: 256px;
         --v-layout-bottom: 0 !important;
+    }
+
+    .fragments {
+        height: calc(100vh - 64px)
     }
 }
 
