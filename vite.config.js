@@ -2,6 +2,7 @@
 import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import { VitePWA } from 'vite-plugin-pwa'
+import legacy from '@vitejs/plugin-legacy'
 
 // Utilities
 import { defineConfig } from 'vite'
@@ -36,7 +37,6 @@ export default defineConfig({
         scope: '/',
         lang: 'zh-CN',
         display: 'standalone',
-        //display_override: ['window-controls-overlay'],
         theme_color: '#FF5722',
         icons: [
           {
@@ -68,6 +68,9 @@ export default defineConfig({
           }
         ]
       },
+    }),
+    legacy({
+      targets: ['defaults','ie 6-11'],
     }),
   ],
   define: {
