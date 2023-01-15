@@ -22,10 +22,10 @@ defineProps({
     <!-- 卡片提供边框 -->
     <v-card border rounded="lg" flat>
         <v-responsive :aspect-ratio="aspectRatio" :style="{ 'spect-ratio': aspectRatio }">
-            <v-carousel :continuous="continuous" :show-arrows="showArrows" :cycle="cycle" hide-delimiters height="100%"
+            <v-window v-if="items" :continuous="continuous" :show-arrows="showArrows" :cycle="cycle" hide-delimiters height="100%"
                 v-bind="$attrs">
                 <slot>
-                    <v-carousel-item v-for="item in items" :key="item.src">
+                    <v-window-item v-for="item in items" :key="item.src">
                         <!-- 自定义图片，支持链接点击与进度条 -->
                         <component :href="item.src ? sanitizeUrl(item.src) : null" :target="item.src ? '_blank' : null"
                             :is="item.src ? 'a' : 'div'">
@@ -38,7 +38,7 @@ defineProps({
                                 </template>
                             </v-img>
                         </component>
-                    </v-carousel-item>
+                    </v-window-item>
                 </slot>
                 <!-- 前进后退按钮 -->
                 <template v-slot:prev="{ props }">
@@ -49,7 +49,7 @@ defineProps({
                     <v-btn class="carousel-button" :class="props.class" variant="text" @click="props.onClick"
                         color="primary" icon="mdi-chevron-right" size="large" />
                 </template>
-            </v-carousel>
+            </v-window>
         </v-responsive>
     </v-card>
 </template>

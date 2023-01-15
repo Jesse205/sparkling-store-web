@@ -11,7 +11,7 @@ const homeStore = useHomeStore()
 
 onActivated(() => {
     document.title = `我的-${appName}`
-    homeStore.fragmentTitle='我的'
+    homeStore.fragmentTitle = '我的'
 })
 
 onDeactivated(() => {
@@ -21,7 +21,11 @@ onDeactivated(() => {
 </script>
 <template>
     <div class="py-2">
-        <v-list-item rounded="lg" lines="two" :title="userStore.nameShow" link :prepend-avatar="userStore.avatar">
+        <v-list-item rounded="lg" lines="two" :title="userStore.nameShow" :subtitle="userStore.email" link
+            :prepend-avatar="userStore.avatar">
+            <template v-slot:append >
+                <v-icon  style="height:40px" color="text-primary-lighten-1" icon="mdi-chevron-right" variant="text"/>
+            </template>
         </v-list-item>
     </div>
 </template>

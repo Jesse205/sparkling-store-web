@@ -1,5 +1,5 @@
 <script setup>
-import { inject, onActivated, onDeactivated } from "vue";
+import { ref, inject, onActivated, onDeactivated } from "vue";
 import MyCarousel from "@/components/AppCarousel.vue"
 import { useHomeStore } from '@/store/home';
 
@@ -18,19 +18,20 @@ onDeactivated(() => {
     homeStore.fragmentTitle = null
 })
 
+const pages = ref(50)
+const page = ref(1)
+
 </script>
 
 <template>
     <!-- 轮播图 -->
-    <div class="py-2">
+    <div v-show="page==1" class="py-2">
         <MyCarousel :items="homeStore.carousels" :aspect-ratio="homeStore.carouselRatio" />
     </div>
-
     <!-- 应用列表 -->
     <div class="py-2">
-
         <v-list border rounded="lg" lines="two">
-            <v-list-item v-for="item in 100" :title="item" :key="item" subtitle="从 Androlua 过渡到 AndroidStudio" link>
+            <v-list-item v-for="item in 10" :key="item" :title="item" subtitle="从 Androlua 过渡到 AndroidStudio" link>
                 <template v-slot:prepend>
                     <v-avatar class="elevation-1">
                         <v-img src="https://linguang.top/apps/image/aidelua.svg" />
@@ -38,12 +39,11 @@ onDeactivated(() => {
                 </template>
             </v-list-item>
         </v-list>
-
     </div>
 
-    <!-- <div class="text-center">
-        <v-pagination v-model="page" :length="6"></v-pagination>
-    </div> -->
+    <div class="text-center">
+        <v-pagination v-model="page" :length="pages"></v-pagination>
+    </div>
 </template>
 
 <style scoped>

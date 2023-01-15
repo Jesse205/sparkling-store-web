@@ -51,7 +51,7 @@ onDeactivated(() => {
         <v-navigation-drawer v-model="drawer">
             <v-list lines="two">
                 <v-list-item :prepend-avatar="userStore.avatar" :title="userStore.nameShow"
-                    :subtitle="userStore.loginState && userStore.email" link />
+                    :subtitle="userStore.email" link />
             </v-list>
             <v-divider></v-divider>
             <v-list density="compact" nav color="primary">
@@ -88,7 +88,7 @@ onDeactivated(() => {
 
     <!-- 主视图 -->
     <v-main class="main">
-        <div class="fragments">
+        <div id="fragments">
             <v-container class="py-2">
                 <router-view v-slot="{ Component }">
                     <keep-alive>
@@ -114,7 +114,7 @@ html {
     overflow-y: hidden;
 }
 
-.fragments {
+#fragments {
     overflow-y: auto;
     height: calc(100vh - 120px)
 }
@@ -125,7 +125,7 @@ html {
         --v-layout-bottom: 0 !important;
     }
 
-    .fragments {
+    #fragments {
         height: calc(100vh - 64px)
     }
 }
