@@ -1,57 +1,11 @@
-<script setup>
-import { ref, onActivated, onDeactivated, inject } from "vue";
-import { useUserStore } from '@/store/user';
-import { useHomeStore } from '@/store/home';
-
-const userStore = useUserStore()
-const homeStore = useHomeStore()
-
-const appName = inject('appName')
-
-const drawer = ref(null)
-const pages = [
-    {
-        title: "首页",
-        icon: "mdi-home-variant-outline",
-        activeIcon: "mdi-home-variant",
-        name: "Home",
-    },
-    {
-        title: "分类",
-        icon: "mdi-apps",
-        activeIcon: "mdi-apps",
-        name: "Sort",
-    },
-    {
-        title: "更新",
-        icon: "mdi-update",
-        activeIcon: "mdi-update",
-        name: "Update",
-    },
-    {
-        title: "我的",
-        icon: "mdi-account-outline",
-        activeIcon: "mdi-account",
-        name: "Me",
-    },
-]
-
-onActivated(() => {
-})
-
-onDeactivated(() => {
-    document.title = appName
-})
-
-</script>
 <template>
     <!-- 侧滑栏 -->
     <!-- 放到div里面屏蔽滑动 -->
     <div class="hidden-sm-and-down">
         <v-navigation-drawer v-model="drawer">
             <v-list lines="two">
-                <v-list-item :prepend-avatar="userStore.avatar" :title="userStore.nameShow"
-                    :subtitle="userStore.email" link />
+                <v-list-item :prepend-avatar="userStore.avatar" :title="userStore.nameShow" :subtitle="userStore.email"
+                    link />
             </v-list>
             <v-divider></v-divider>
             <v-list density="compact" nav color="primary">
@@ -109,14 +63,67 @@ onDeactivated(() => {
     </v-bottom-navigation>
 
 </template>
+<script setup>
+import { ref, onActivated, onDeactivated, inject } from "vue";
+import { useUserStore } from '@/store/user';
+import { useHomeStore } from '@/store/home';
+
+const userStore = useUserStore()
+const homeStore = useHomeStore()
+
+const appName = inject('appName')
+
+const drawer = ref(null)
+const pages = [
+    {
+        title: "首页",
+        icon: "mdi-home-variant-outline",
+        activeIcon: "mdi-home-variant",
+        name: "Home",
+    },
+    {
+        title: "分类",
+        icon: "mdi-apps",
+        activeIcon: "mdi-apps",
+        name: "Sort",
+    },
+    {
+        title: "更新",
+        icon: "mdi-update",
+        activeIcon: "mdi-update",
+        name: "Update",
+    },
+    {
+        title: "我的",
+        icon: "mdi-account-outline",
+        activeIcon: "mdi-account",
+        name: "Me",
+    },
+]
+
+onActivated(() => {
+})
+
+onDeactivated(() => {
+    document.title = appName
+})
+
+</script>
+
 <style>
 html {
     overflow-y: hidden;
 }
 
+.main {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
 #fragments {
     overflow-y: auto;
-    height: calc(100vh - 120px)
+    height: calc(100%);
 }
 
 @media (min-width: 960px) {
@@ -124,15 +131,17 @@ html {
         --v-layout-left: 256px;
         --v-layout-bottom: 0 !important;
     }
-
-    #fragments {
-        height: calc(100vh - 64px)
-    }
 }
 
 @media (max-width: 959.98px) {
     .main {
         --v-layout-left: 0 !important;
+    }
+}
+
+@media (min-width: 960px) {
+    .v-container {
+        max-width: 900px !important;
     }
 }
 </style>

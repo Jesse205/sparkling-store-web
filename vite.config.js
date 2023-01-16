@@ -31,7 +31,7 @@ export default defineConfig({
       manifest: {
         name: '粼光应用商店 Lite',
         short_name: '粼光商店 Lite',
-        start_url: '/',
+        start_url: '/#/home',
         description: '不只是一个应用市场•粼光',
         author: 'Jesse205',
         scope: '/',
@@ -67,11 +67,18 @@ export default defineConfig({
             type: 'image/png',
             purpose: 'maskable'
           }
+        ],
+        shortcuts: [
+          {
+            name: "上传应用",
+            url: "/#/upload",
+            description: "上传或更新你的应用"
+          }
         ]
       },
     }),
     legacy({
-      targets: ['defaults','ie 6-11'],
+      targets: ['defaults'],
     }),
   ],
   define: {

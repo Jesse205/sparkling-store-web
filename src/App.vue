@@ -1,3 +1,15 @@
+<template>
+  <v-app>
+    <v-divider />
+    <router-view v-slot="{ Component }">
+      <keep-alive :max="10">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
+    <v-snackbar v-model="store.snackbar">{{ store.snackbarText }}</v-snackbar>
+  </v-app>
+</template>
+
 <script setup>
 //import { ref } from 'vue'
 import { useStore } from '@/store/index';
@@ -25,40 +37,5 @@ try {
     console.error(e2);
   }
 }
-
 </script>
 
-<template>
-  <v-app>
-    <v-divider/>
-    <router-view v-slot="{ Component }">
-      <keep-alive :max="10">
-        <component :is="Component" />
-      </keep-alive>
-    </router-view>
-    <v-snackbar v-model="store.snackbar">{{ store.snackbarText }}</v-snackbar>
-  </v-app>
-</template>
-
-<style>
-/* 调整容器最大宽度 */
-@media (min-width: 1280px) {
-  .v-container {
-    max-width: 1280px !important;
-  }
-}
-
-/* 隐藏进度条的底色 */
-.hideProgressUnderlay .v-progress-circular__underlay {
-  display: none;
-}
-
-.v-icon--size-default {
-  font-size: 24px !important;
-}
-
-/* 选中的图标不变灰 */
-.v-btn--active.v-btn--variant-plain {
-  opacity: 1 !important;
-}
-</style>

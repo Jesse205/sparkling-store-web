@@ -1,0 +1,20 @@
+/* 调整容器最大宽度 */
+@media (min-width: 1280px) {
+  .v-container {
+    max-width: 1280px !important;
+  }
+}
+
+/* 隐藏进度条的底色 */
+.hideProgressUnderlay .v-progress-circular__underlay {
+  display: none;
+}
+
+.v-icon--size-default {
+  font-size: 24px !important;
+}
+
+/* 选中的图标不变灰 */
+.v-btn--active.v-btn--variant-plain {
+  opacity: 1 !important;
+}

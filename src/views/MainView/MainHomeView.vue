@@ -31,7 +31,7 @@ const page = ref(1)
     <!-- 应用列表 -->
     <div class="py-2">
         <v-list border rounded="lg" lines="two">
-            <v-list-item v-for="item in 10" :key="item" :title="item" subtitle="从 Androlua 过渡到 AndroidStudio" link>
+            <v-list-item v-for="item in 10" :key="item" :title="item+10*(page-1)" subtitle="从 Androlua 过渡到 AndroidStudio" link>
                 <template v-slot:prepend>
                     <v-avatar class="elevation-1">
                         <v-img src="https://linguang.top/apps/image/aidelua.svg" />
