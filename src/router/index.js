@@ -1,10 +1,17 @@
 // Composables
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+const MainView = () => import('@/views/MainView/MainView.vue')
+const MainHomeView = () => import('@/views/MainView/MainHomeView.vue')
+const MainSortView = () => import('@/views/MainView/MainSortView.vue')
+const MainUpdateView = () => import('@/views/MainView/MainUpdateView.vue')
+const MainMeView = () => import('@/views/MainView/MainMeView.vue')
+
+const UploadView = () => import('@/views/UploadView.vue')
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/MainView/MainView.vue'),
+    component: MainView,
     children: [
       {
         path: '/',
@@ -13,24 +20,29 @@ const routes = [
       {
         path: 'home',
         name: 'Home',
-        component: () => import('@/views/MainView/MainHomeView.vue'),
+        component: MainHomeView,
       },
       {
         path: 'sort',
         name: 'Sort',
-        component: () => import('@/views/MainView/MainSortView.vue'),
+        component: MainSortView,
       },
       {
         path: 'update',
         name: 'Update',
-        component: () => import('@/views/MainView/MainUpdateView.vue'),
+        component: MainUpdateView,
       },
       {
         path: 'me',
         name: 'Me',
-        component: () => import('@/views/MainView/MainMeView.vue'),
+        component: MainMeView
       },
     ],
+  },
+  {
+    path: '/upload',
+    name: 'Upload',
+    component: UploadView
   },
   /*  {
      path: '/appinfo/:packagename',
@@ -43,10 +55,16 @@ const routes = [
      component: () => import('../views/About.vue')
    }, */
 ]
-
+const history = createWebHashHistory(process.env.BASE_URL)
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
+  history,
   routes,
+})
+
+router.afterEach((to, from) => {
+  let name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
+  to.meta.transition = name
+  from.meta.transition = name
 })
 
 export default router

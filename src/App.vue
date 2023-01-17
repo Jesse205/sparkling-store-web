@@ -1,20 +1,20 @@
 <template>
   <v-app>
-    <v-divider />
-    <router-view v-slot="{ Component }">
+    <router-view v-slot="{ Component, route }">
+
       <keep-alive :max="10">
-        <component :is="Component" />
+        <transition :name="route.meta.transition">
+          <component :is="Component" class="page" />
+        </transition>
       </keep-alive>
+
     </router-view>
-    <v-snackbar v-model="store.snackbar">{{ store.snackbarText }}</v-snackbar>
   </v-app>
 </template>
 
 <script setup>
 //import { ref } from 'vue'
-import { useStore } from '@/store/index';
 import { useTheme } from 'vuetify'
-const store = useStore()
 const theme = useTheme()
 
 // 自动设置暗色模式
@@ -38,4 +38,10 @@ try {
   }
 }
 </script>
-
+<style scoped>
+.page {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+</style>

@@ -18,3 +18,15 @@
 .v-btn--active.v-btn--variant-plain {
   opacity: 1 !important;
 }
+
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 20s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
