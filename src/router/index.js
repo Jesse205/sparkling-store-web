@@ -55,6 +55,10 @@ const routes = [
     name: 'User',
     component: UserView
   },
+  {
+    path: '/:chapters*',
+    redirect: { name: 'Home' }
+  },
   /*  {
      path: '/appinfo/:packagename',
      name: 'AppInfo',

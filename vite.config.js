@@ -31,7 +31,7 @@ export default defineConfig({
       manifest: {
         name: '粼光应用商店 Lite',
         short_name: '粼光商店 Lite',
-        start_url: '/#/home',
+        start_url: '/#/index/home',
         description: '不只是一个应用市场•粼光',
         author: 'Jesse205',
         scope: '/',
