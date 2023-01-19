@@ -3,10 +3,19 @@
     "time": 1673022535,
     "msg": "操作成功",
     "state": 200,
-    "data":[
+    "data": [
         {
-            "icon":"/icons/android-chrome-192x192.png",
-            "name":"Aide Lua Pro"
+            "icon": "https://linguang.top/apps/image/aidelua.svg",
+            "name": "Aide Lua Pro",
+            "summary": "从 Androlua 过渡到 AndroidStudio"
+        },
+        {
+            "icon": "/icons/android-chrome-192x192.png",
+            "name": "粼光APP"
+        },
+        {
+            "icon": "/icons/android-chrome-192x192.png",
+            "name": "畅玩6X工具箱1"
         }
     ]
 }

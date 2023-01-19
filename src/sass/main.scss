@@ -1,11 +1,11 @@
-/* 调整容器最大宽度 */
+// 调整容器最大宽度
 @media (min-width: 1280px) {
   .v-container {
     max-width: 1280px !important;
   }
 }
 
-/* 隐藏进度条的底色 */
+// 隐藏进度条的底色
 .hideProgressUnderlay .v-progress-circular__underlay {
   display: none;
 }
@@ -14,19 +14,25 @@
   font-size: 24px !important;
 }
 
-/* 选中的图标不变灰 */
+// 选中的图标不变灰
 .v-btn--active.v-btn--variant-plain {
   opacity: 1 !important;
 }
 
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 20s ease;
+// 页面切换时标题栏不乱跑
+.v-toolbar {
+  top: 0 !important;
+  transform: translateY(0%) !important;
 }
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
+
+// 更平滑的自适应
+@media (min-width: 900px) {
+  .v-container {
+    max-width: 900px !important;
+  }
 }
 
+.v-menu .v-overlay__content > .v-list {
+  box-shadow: 0 6px 12px 0px rgb(0 0 0/16%), 0 0 2px 0 rgb(0 0 0/8%) !important;
+}

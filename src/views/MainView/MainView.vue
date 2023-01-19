@@ -1,13 +1,14 @@
 <template>
     <div>
-        
+
         <!-- 侧滑栏 -->
         <!-- 放到div里面屏蔽滑动 -->
         <div class="hidden-sm-and-down">
             <v-navigation-drawer v-model="drawer">
                 <v-list lines="two">
                     <v-list-item :prepend-avatar="userStore.avatar" :title="userStore.nameShow"
-                        :subtitle="userStore.email" link />
+                        :subtitle="userStore.email"
+                        @click="userStore.loginState ? $router.push({ name: 'User' }) : userStore.login()" />
                 </v-list>
                 <v-divider></v-divider>
                 <v-list density="compact" nav color="primary">
@@ -19,7 +20,7 @@
         </div>
         <!-- 应用栏 density="comfortable" -->
         <v-app-bar flat border="b">
-            <v-app-bar-nav-icon class="hidden-sm-and-down"  @click.stop="drawer = !drawer" />
+            <v-app-bar-nav-icon class="hidden-sm-and-down" @click.stop="drawer = !drawer" />
             <v-app-bar-title>{{ homeStore.fragmentTitle }}</v-app-bar-title>
             <v-spacer />
             <v-tooltip location="bottom" transition="fade-transition">
@@ -37,6 +38,7 @@
                     <v-list-item title="上传应用" :to="{ name: 'Upload' }" />
                     <v-list-item link :title="userStore.loginState ? '退出登录' : '登录'"
                         @click="userStore.loginState ? userStore.logout() : userStore.login()" />
+                    <v-list-item v-if="installBtnVisible" title="安装应用" @click="onInstallBtnClick" />
                 </v-list>
             </v-menu>
 
@@ -110,6 +112,10 @@ onActivated(() => {
 onDeactivated(() => {
     document.title = appName
 })
+
+const installBtnVisible=inject('installBtnVisible')
+const onInstallBtnClick=inject('onInstallBtnClick')
+
 </script>
 
 <style>

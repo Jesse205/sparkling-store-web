@@ -8,15 +8,17 @@ const MainUpdateView = () => import('@/views/MainView/MainUpdateView.vue')
 const MainMeView = () => import('@/views/MainView/MainMeView.vue')
 
 const UploadView = () => import('@/views/UploadView.vue')
+const UserView = () => import('@/views/UserView.vue')
+
 const routes = [
   {
     path: '/',
+    redirect: '/index'
+  },
+  {
+    path: '/index',
     component: MainView,
     children: [
-      {
-        path: '/',
-        redirect: '/home'
-      },
       {
         path: 'home',
         name: 'Home',
@@ -37,12 +39,21 @@ const routes = [
         name: 'Me',
         component: MainMeView
       },
+      {
+        path: ':chapters*',
+        redirect: { name: 'Home' }
+      },
     ],
   },
   {
     path: '/upload',
     name: 'Upload',
     component: UploadView
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: UserView
   },
   /*  {
      path: '/appinfo/:packagename',

@@ -1,19 +1,18 @@
 <template>
   <v-app>
+
     <router-view v-slot="{ Component, route }">
-
-      <keep-alive :max="10">
-        <transition :name="route.meta.transition">
+      <transition :name="route.meta.transition">
+        <keep-alive :max="10">
           <component :is="Component" class="page" />
-        </transition>
-      </keep-alive>
-
+        </keep-alive>
+      </transition>
     </router-view>
   </v-app>
 </template>
 
 <script setup>
-//import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount, provide } from 'vue'
 import { useTheme } from 'vuetify'
 const theme = useTheme()
 
@@ -37,6 +36,38 @@ try {
     console.error(e2);
   }
 }
+
+// PWA 安装
+const installBtnVisible = ref(false)
+const onInstallBtnClick = ref()
+provide('installBtnVisible', installBtnVisible)
+provide('onInstallBtnClick', onInstallBtnClick)
+
+const onBeforeInstallPrompt = (deferredPrompt) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  deferredPrompt.preventDefault();
+  installBtnVisible.value = true
+  onInstallBtnClick.value = () => {
+    installBtnVisible.value = false
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the A2HS prompt");
+        installBtnVisible.value = false
+      } else {
+        console.log("User dismissed the A2HS prompt");
+        installBtnVisible.value = true
+      }
+      deferredPrompt = null
+    });
+  }
+}
+onMounted(() => {
+  window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt);
+})
+onBeforeUnmount(() => {
+  window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt);
+})
 </script>
 <style scoped>
 .page {
