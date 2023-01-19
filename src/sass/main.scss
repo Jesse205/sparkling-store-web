@@ -33,6 +33,16 @@
   }
 }
 
-.v-menu .v-overlay__content > .v-list {
+.v-menu .v-overlay__content>.v-list {
   box-shadow: 0 6px 12px 0px rgb(0 0 0/16%), 0 0 2px 0 rgb(0 0 0/8%) !important;
+}
+
+.v-list-item__prepend>.v-icon {
+  opacity: 1 !important;
+  color: rgb(var(--v-theme-primary));
+}
+
+.v-list-item__prepend,
+.v-list-item__append {
+  height: 100%;
 }

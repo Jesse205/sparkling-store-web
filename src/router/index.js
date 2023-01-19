@@ -3,12 +3,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const MainView = () => import('@/views/MainView/MainView.vue')
 const MainHomeView = () => import('@/views/MainView/MainHomeView.vue')
-const MainSortView = () => import('@/views/MainView/MainSortView.vue')
+const MainAppsView = () => import('@/views/MainView/MainAppsView.vue')
 const MainUpdateView = () => import('@/views/MainView/MainUpdateView.vue')
 const MainMeView = () => import('@/views/MainView/MainMeView.vue')
 
 const UploadView = () => import('@/views/UploadView.vue')
 const UserView = () => import('@/views/UserView.vue')
+const ViewAppView = () => import('@/views/ViewAppView.vue')
 
 const routes = [
   {
@@ -25,9 +26,9 @@ const routes = [
         component: MainHomeView,
       },
       {
-        path: 'sort',
-        name: 'Sort',
-        component: MainSortView,
+        path: 'apps',
+        name: 'Apps',
+        component: MainAppsView,
       },
       {
         path: 'update',
@@ -54,6 +55,11 @@ const routes = [
     path: '/user',
     name: 'User',
     component: UserView
+  },
+  {
+    path: '/app/:packageName',
+    name: 'ViewApp',
+    component: ViewAppView
   },
   {
     path: '/:chapters*',

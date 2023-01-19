@@ -90,7 +90,7 @@ const pages = [
         title: "分类",
         icon: "mdi-apps",
         activeIcon: "mdi-apps",
-        name: "Sort",
+        name: "Apps",
     },
     {
         title: "更新",

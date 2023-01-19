@@ -29,7 +29,7 @@ fetch(TODAY_APPS_URL)
     })
 
 const nowTodayPageList = computed(() => {
-    return todayApps.value.slice((maxItems+1) * (page.value - 1), (maxItems+1) * (page.value))
+    return todayApps.value.slice((maxItems + 1) * (page.value - 1), (maxItems + 1) * (page.value))
 })
 
 </script>
@@ -41,14 +41,15 @@ const nowTodayPageList = computed(() => {
         <div v-show="page == 1" class="py-2">
             <MyCarousel :items="homeStore.carousels" :aspect-ratio="homeStore.carouselRatio" />
         </div>
+
         <!-- 应用列表 -->
         <div v-if="todayApps" class="py-2">
             <v-list border rounded="lg" lines="two">
                 <v-list-subheader>最近更新</v-list-subheader>
                 <v-list-item v-for="item in nowTodayPageList" :key="item.name" :title="item.name"
-                    subtitle="从 Androlua 过渡到 AndroidStudio" link>
+                    :subtitle="item.summary" :to="`/app/${item.package_name}`">
                     <template v-slot:prepend>
-                        <v-avatar class="elevation-1">
+                        <v-avatar class="elevation-1" rounded="lg">
                             <v-img :src="item.icon" />
                         </v-avatar>
                     </template>
@@ -60,6 +61,7 @@ const nowTodayPageList = computed(() => {
             <v-pagination v-model="page" :length="pages"></v-pagination>
         </div>
     </v-container>
+
 </template>
 
 <style scoped>

@@ -11,12 +11,23 @@ const userStore = useUserStore()
         <div class="py-2">
             <v-list-item rounded="lg" lines="two" :title="userStore.nameShow" :subtitle="userStore.email" link
                 :prepend-avatar="userStore.avatar"
-                @click="userStore.loginState ? $router.push({ name: 'User' }) : userStore.login()">
-                <template v-slot:append>
-                    <v-icon style="height:40px" color="text-primary-lighten-1" icon="mdi-chevron-right"
-                        variant="text" />
-                </template>
-            </v-list-item>
+                @click="userStore.loginState ? $router.push({ name: 'User' }) : userStore.login()"
+                append-icon="mdi-chevron-right" />
+        </div>
+
+        <!-- 用户面板 -->
+        <div v-if="userStore.loginState" class="py-2">
+            <v-list border rounded="lg">
+                <v-list-item title="应用管理" link prepend-icon="mdi-apps" append-icon="mdi-chevron-right" />
+            </v-list>
+        </div>
+
+        <!-- 软件面包 -->
+        <div class="py-2">
+            <v-list border rounded="lg" color="primary">
+                <v-list-item title="设置" link prepend-icon="mdi-cog-outline" append-icon="mdi-chevron-right" />
+                <v-list-item title="关于" link prepend-icon="mdi-information-outline" append-icon="mdi-chevron-right" />
+            </v-list>
         </div>
     </v-container>
 </template>

@@ -7,15 +7,20 @@
         {
             "icon": "https://linguang.top/apps/image/aidelua.svg",
             "name": "Aide Lua Pro",
-            "summary": "从 Androlua 过渡到 AndroidStudio"
+            "summary": "从 Androlua 过渡到 AndroidStudio",
+            "package_name":"com.jesse205.aidelua2"
         },
         {
             "icon": "/icons/android-chrome-192x192.png",
-            "name": "粼光APP"
+            "name": "粼光APP",
+            "summary": "从 Androlua 过渡到 AndroidStudio",
+            "package_name":"com.jesse205.aidelua2"
         },
         {
-            "icon": "/icons/android-chrome-192x192.png",
-            "name": "畅玩6X工具箱1"
+            "icon": "https://linguang.top/apps/image/AndroLuaX.svg",
+            "name": "AndroLuaX",
+            "summary":"添了AndroidX的ALua",
+            "package_name":"com.jesse205.androluax"
         }
     ]
 }
