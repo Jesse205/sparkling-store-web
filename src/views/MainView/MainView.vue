@@ -46,7 +46,7 @@
 
         <!-- 主视图 -->
         <v-main class="main">
-            <div id="content">
+            <div id="homeContent">
                 <!-- <v-container class="py-2"> -->
                 <router-view v-slot="{ Component }">
                     <keep-alive>
@@ -69,14 +69,12 @@
 </template>
 
 <script setup>
-import { ref, onActivated, onDeactivated, inject } from "vue";
+import { ref, inject } from "vue";
 import { useUserStore } from '@/store/user';
 import { useHomeStore } from '@/store/home';
 
 const userStore = useUserStore()
 const homeStore = useHomeStore()
-
-const appName = inject('appName')
 
 const drawer = ref(null)
 const pages = [
@@ -106,15 +104,8 @@ const pages = [
     },
 ]
 
-onActivated(() => {
-})
-
-onDeactivated(() => {
-    document.title = appName
-})
-
-const installBtnVisible=inject('installBtnVisible')
-const onInstallBtnClick=inject('onInstallBtnClick')
+const installBtnVisible = inject('installBtnVisible')
+const onInstallBtnClick = inject('onInstallBtnClick')
 
 </script>
 
@@ -129,7 +120,7 @@ html {
     width: 100%;
 }
 
-#content {
+#homeContent {
     overflow-y: auto;
     height: calc(100%);
 }

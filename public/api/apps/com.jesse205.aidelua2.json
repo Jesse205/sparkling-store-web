@@ -1,6 +1,8 @@
 {
-    "app_name": "Aide Lua Pro",
+    "name": "Aide Lua Pro",
     "version": "5.1.0",
     "version_code": 51099,
+    "icon": "https://linguang.top/apps/image/aidelua.svg",
+    "summary": "从 Androlua 过渡到 AndroidStudio",
     "screenshot":[]
 }

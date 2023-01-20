@@ -4,6 +4,7 @@ import { ref, inject } from 'vue';
 export const useHomeStore = defineStore('home', () => {
     const apiBaseUrl = inject('apiBaseUrl')
     const APP_CONFIG_URL = apiBaseUrl + 'homeconfig.json'
+
     const config = ref(null)
     const carousels = ref()
     const carouselRatio = ref(2.3)// 默认2.3
@@ -22,11 +23,15 @@ export const useHomeStore = defineStore('home', () => {
     }
 
     const fragmentTitle = ref('')
+
+    
     return {
+        APP_CONFIG_URL,
         config,
         carousels,
         carouselRatio,
         loadAppConfig,
-        fragmentTitle
+
+        fragmentTitle,
     }
 })

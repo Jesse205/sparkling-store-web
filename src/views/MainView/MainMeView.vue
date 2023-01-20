@@ -16,14 +16,14 @@ const userStore = useUserStore()
         </div>
 
         <!-- 用户面板 -->
-        <div v-if="userStore.loginState" class="py-2">
+        <div v-if="userStore.loginState" class="py-2 list-item-primaryIcon">
             <v-list border rounded="lg">
                 <v-list-item title="应用管理" link prepend-icon="mdi-apps" append-icon="mdi-chevron-right" />
             </v-list>
         </div>
 
         <!-- 软件面包 -->
-        <div class="py-2">
+        <div class="py-2 list-item-primaryIcon">
             <v-list border rounded="lg" color="primary">
                 <v-list-item title="设置" link prepend-icon="mdi-cog-outline" append-icon="mdi-chevron-right" />
                 <v-list-item title="关于" link prepend-icon="mdi-information-outline" append-icon="mdi-chevron-right" />
