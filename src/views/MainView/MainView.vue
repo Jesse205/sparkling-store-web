@@ -46,7 +46,7 @@
 
         <!-- 主视图 -->
         <v-main class="main">
-            <div id="homeContent">
+            <div class="mainContent" id="homeContent">
                 <!-- <v-container class="py-2"> -->
                 <router-view v-slot="{ Component }">
                     <keep-alive>
@@ -109,21 +109,7 @@ const onInstallBtnClick = inject('onInstallBtnClick')
 
 </script>
 
-<style>
-html {
-    overflow-y: hidden;
-}
-
-.main {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-}
-
-#homeContent {
-    overflow-y: auto;
-    height: calc(100%);
-}
+<style scoped>
 
 @media (min-width: 960px) {
     .main {
@@ -139,7 +125,7 @@ html {
 }
 
 @media (min-width: 960px) {
-    .v-container {
+    :deep(.v-container) {
         max-width: 900px !important;
     }
 }

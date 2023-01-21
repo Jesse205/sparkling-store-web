@@ -20,8 +20,4 @@ export function useHomeTitle(title) {
     onActivated(() => {
         homeStore.fragmentTitle = title
     })
-
-   /*  onDeactivated(() => {
-        homeStore.fragmentTitle = appName
-    }) */
 }

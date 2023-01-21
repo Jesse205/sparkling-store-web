@@ -1,9 +1,16 @@
 // 调整容器最大宽度
-@media (min-width: 1280px) {
+/* @media (min-width: 1280px) {
   .v-container {
     max-width: 1280px !important;
   }
-}
+} */
+
+// 更平滑的自适应
+/* @media (min-width: 900px) {
+  .v-container {
+    max-width: 900px !important;
+  }
+} */
 
 // 隐藏进度条的底色
 .hideProgressUnderlay .v-progress-circular__underlay {
@@ -25,13 +32,12 @@
   transform: translateY(0%) !important;
 }
 
-
-// 更平滑的自适应
-@media (min-width: 900px) {
-  .v-container {
-    max-width: 900px !important;
-  }
+// 页面切换时侧滑栏不乱跑
+.v-navigation-drawer {
+  top: 0 !important;
 }
+
+
 
 .v-menu .v-overlay__content>.v-list {
   box-shadow: 0 6px 12px 0px rgb(0 0 0/16%), 0 0 2px 0 rgb(0 0 0/8%) !important;
@@ -45,4 +51,20 @@
 .v-list-item__prepend,
 .v-list-item__append {
   height: 100%;
+}
+
+html {
+  overflow-y: hidden !important;
+}
+
+.v-main {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+// 区域滚动
+.v-main>.mainContent {
+  overflow-y: auto;
+  height: calc(100%);
 }

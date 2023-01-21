@@ -15,7 +15,7 @@ export const useAppsStore = defineStore('apps', () => {
             let icon = ref() // 图标
             let summary = ref()
             config = { name, icon, summary, packageName }
-            appsCache[packageName] = config
+            // appsCache[packageName] = config
             fetch(appConfigUrl)
                 .then(response => response.json())
                 .then((data) => {

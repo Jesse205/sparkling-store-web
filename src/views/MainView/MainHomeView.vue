@@ -46,6 +46,7 @@ watchEffect(() => {
         let config = appsStore.getAppConfig(nowPackageNamesList[index])
         newList.push(config)
     }
+    appsStore.clearConfigsCache()
     nowTodayPageList.value = newList
 })
 
