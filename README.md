@@ -4,6 +4,8 @@
 ## 仓库链接
 此仓库有两个链接，Gitee 为主，Github 为镜像
 
+预览地址：https://sparklingstorev3test.netlify.app/
+
 ## 安装工程
 
 ``` powershell
