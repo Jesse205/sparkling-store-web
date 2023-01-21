@@ -51,8 +51,8 @@ watchEffect(() => {
 })
 
 watch(page, () => {
-    
-    document.getElementById('homeContent').scrollTo(0,0)
+
+    document.getElementById('mainContent').scrollTo(0, 0)
 })
 
 </script>

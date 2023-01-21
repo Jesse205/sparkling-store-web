@@ -45,17 +45,13 @@
         </v-app-bar>
 
         <!-- 主视图 -->
-        <v-main class="main">
-            <div class="mainContent" id="homeContent">
-                <!-- <v-container class="py-2"> -->
-                <router-view v-slot="{ Component }">
-                    <keep-alive>
-                        <component :is="Component" />
-                    </keep-alive>
-                </router-view>
-                <!-- </v-container> -->
-            </div>
-        </v-main>
+        <AppMain class="main">
+            <router-view v-slot="{ Component }">
+                <keep-alive>
+                    <component :is="Component" />
+                </keep-alive>
+            </router-view>
+        </AppMain>
 
         <!-- 底部导航栏 -->
         <v-bottom-navigation grow class="hidden-md-and-up" color="primary" mandatory border="t" :elevation="0">
@@ -110,7 +106,6 @@ const onInstallBtnClick = inject('onInstallBtnClick')
 </script>
 
 <style scoped>
-
 @media (min-width: 960px) {
     .main {
         --v-layout-left: 256px;

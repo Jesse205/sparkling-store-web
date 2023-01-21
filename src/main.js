@@ -7,6 +7,7 @@ import '@/sass/main.scss'
 
 // Components
 import App from './App.vue'
+import AppMain from './components/AppMain.vue'
 
 // Composables
 import { createApp } from 'vue'
@@ -15,6 +16,7 @@ import { createApp } from 'vue'
 import { registerPlugins } from '@/plugins'
 
 const app = createApp(App)
+app.component('AppMain', AppMain)
 
 registerPlugins(app)
 app.provide('appName', '粼光商店 Lite')

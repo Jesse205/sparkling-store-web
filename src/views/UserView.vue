@@ -4,7 +4,7 @@
             <v-btn icon="mdi-arrow-left" @click.stop="$router.back" />
             <v-app-bar-title>用户信息</v-app-bar-title>
         </v-app-bar>
-        <v-main>
+        <AppMain>
             <v-container class="container list-item-primaryIcon">
                 <v-list>
                     <v-list-item lines="two" title="用户昵称" :subtitle="userStore.name || '未命名'"
@@ -15,7 +15,7 @@
                         prepend-icon="mdi-identifier" />
                 </v-list>
             </v-container>
-        </v-main>
+        </AppMain>
     </div>
 </template>
 

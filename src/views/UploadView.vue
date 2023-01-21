@@ -5,9 +5,9 @@
             <v-app-bar-title>上传应用</v-app-bar-title>
 
         </v-app-bar>
-        <v-main>
+        <AppMain>
             upload
-        </v-main>
+        </AppMain>
     </div>
 </template>
 
