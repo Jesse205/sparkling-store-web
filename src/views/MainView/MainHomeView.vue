@@ -10,7 +10,7 @@ useHomeTitle('首页')
 const homeStore = useHomeStore()
 homeStore.loadAppConfig()
 
-const maxItems = 20
+const maxItems = 15
 const pages = ref(1)
 const page = ref(1)
 const todayAppPackages = ref([])
@@ -51,7 +51,6 @@ watchEffect(() => {
 })
 
 watch(page, () => {
-
     document.getElementById('mainContent').scrollTo(0, 0)
 })
 
@@ -73,7 +72,7 @@ watch(page, () => {
                 <v-list-item v-for="item in nowTodayPageList" :title="item.name" :subtitle="item.summary"
                     :to="`/app/${item.packageName}`">
                     <template v-slot:prepend>
-                        <v-avatar class="elevation-1" rounded="lg">
+                        <v-avatar class="elevation-1" rounded="lg" size="48">
                             <v-img :src="item.icon" />
                         </v-avatar>
                     </template>

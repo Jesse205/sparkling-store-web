@@ -5,7 +5,7 @@ import { useHomeStore } from '@/store/home';
 export function useTitle(title) {
     const appName = inject('appName')
     onActivated(() => {
-        document.title = `${title}-${appName}`
+        document.title = title
     })
 
     onDeactivated(() => {
