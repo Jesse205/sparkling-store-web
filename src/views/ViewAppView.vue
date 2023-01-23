@@ -40,11 +40,12 @@
                             :src="item" cover v-ripple />
                     </div>
 
-                    <v-overlay class="screenshotOverlay h-100 w-100" v-model="screenshotOverlay" scroll-strategy="block"
-                        close-on-content-click>
+                    <v-overlay class="screenshotOverlay h-100 w-100" v-model="screenshotOverlay"
+                        scroll-strategy="block">
                         <v-carousel v-model="screenshotModel" class="h-100 w-100" show-arrows="hover" hide-delimiters>
                             <!-- eslint-disable-next-line vue/valid-v-for -->
-                            <v-carousel-item v-for="item in appConfig.screenshot" :src="item" />
+                            <v-carousel-item v-for="item in appConfig.screenshot" :src="item"
+                                @click="screenshotOverlay = false" />
                         </v-carousel>
                         <div class="screenshotModel">{{ screenshotModel }}</div>
                     </v-overlay>
@@ -65,7 +66,7 @@
 </template>
 
 <script setup>
-import { ref, inject, watch, onDeactivated, onActivated } from "vue";
+import { ref, inject, watch,  onActivated } from "vue";
 import { useRoute, onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router";
 import { useTitle } from "@/events/title";
 import { useStore } from '@/store/index';
@@ -100,6 +101,7 @@ function initConfig() {
 
 onBeforeRouteLeave(() => {
     console.log('Before route leave');
+    screenshotOverlay.value = false
 })
 
 onBeforeRouteUpdate(() => {
@@ -111,9 +113,6 @@ onActivated(() => {
     initConfig()
 })
 
-onDeactivated(() => {
-    screenshotOverlay.value = false
-})
 refresh()
 
 const screenshotModel = ref()
@@ -156,8 +155,8 @@ function onScreenshotClick(index) {
 #screenshotThumbnails {
     display: flex;
     overflow-x: auto;
-    border-radius: 8px;
-    padding: 4px 0
+    // border-radius: 8px;
+    padding: 8px 0
 }
 
 .screenshotModel {

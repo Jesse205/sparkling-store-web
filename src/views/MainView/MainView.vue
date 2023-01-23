@@ -118,10 +118,4 @@ const onInstallBtnClick = inject('onInstallBtnClick')
         --v-layout-left: 0 !important;
     }
 }
-
-@media (min-width: 960px) {
-    :deep(.v-container) {
-        max-width: 900px !important;
-    }
-}
 </style>

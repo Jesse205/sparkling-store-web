@@ -4,7 +4,97 @@
     "msg": "操作成功",
     "state": 200,
     "data": [
-        "com.jesse205.aidelua2",
-        "com.jesse205.deskclock.lite"
+        {
+            "name": "精品推荐",
+            "跟运营说的话": "别整多了，整多了没用户了",
+            "summary": "想把你的应用放这里吗？",
+            "apps": [
+                "com.jesse205.aidelua2",
+                "com.jesse205.deskclock.lite"
+            ]
+        },
+        {
+            "name": "日常生活",
+            "summary": "科技给人们的生活带来了便利",
+            "apps": [
+                "com.jesse205.deskclock.lite",
+                "com.jesse205.deskclock.lite",
+                "com.jesse205.deskclock.lite"
+            ]
+        },
+        {
+            "name": "系统工具",
+            "summary": "用这些工具DIY属于你自己的手机吧",
+            "apps": [
+                "com.jesse205.deskclock.lite",
+                "com.jesse205.deskclock.lite",
+                "com.jesse205.deskclock.lite"
+            ]
+        },
+        {
+            "name": "编程开发",
+            "summary": "手机竟然也能高效地编程？",
+            "apps": [
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2",
+                "com.jesse205.aidelua2"
+            ]
+        }
     ]
 }

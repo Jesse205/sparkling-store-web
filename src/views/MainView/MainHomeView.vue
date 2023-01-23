@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watchEffect, watch } from "vue";
 import MyCarousel from "@/components/AppCarousel.vue"
+import AppItem from '@/components/AppItem.vue'
 import { useHomeTitle } from "@/events/title";
 import { useHomeStore } from '@/store/home';
 import { useAppsStore } from '@/store/apps'
@@ -29,7 +30,6 @@ fetch(mainStore.TODAY_APPS_URL)
                 let packageName = appPackageNamesList[index]
                 todayAppPackages.value.push(packageName)
             }
-
         }
     })
     .catch((error) => {
@@ -57,8 +57,7 @@ watch(page, () => {
 </script>
 
 <template>
-
-    <v-container class="py-2">
+    <v-container class="py-2 container">
         <!-- 轮播图 -->
         <div v-show="page == 1" class="py-2">
             <MyCarousel :items="homeStore.carousels" :aspect-ratio="homeStore.carouselRatio" />
@@ -69,14 +68,7 @@ watch(page, () => {
             <v-list border rounded="lg" lines="two">
                 <v-list-subheader>最近更新</v-list-subheader>
                 <!-- eslint-disable-next-line vue/valid-v-for -->
-                <v-list-item v-for="item in nowTodayPageList" :title="item.name" :subtitle="item.summary"
-                    :to="`/app/${item.packageName}`">
-                    <template v-slot:prepend>
-                        <v-avatar class="elevation-1" rounded="lg" size="48">
-                            <v-img :src="item.icon" />
-                        </v-avatar>
-                    </template>
-                </v-list-item>
+                <AppItem v-for="item in nowTodayPageList" :item="item" />
             </v-list>
         </div>
 
@@ -84,9 +76,12 @@ watch(page, () => {
             <v-pagination v-model="page" :length="pages"></v-pagination>
         </div>
     </v-container>
-
 </template>
 
 <style scoped>
-
+@media (min-width: 960px) {
+    .container {
+        max-width: 900px !important;
+    }
+}
 </style>
