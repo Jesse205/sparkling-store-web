@@ -20,5 +20,6 @@ html {
 .v-main>#mainContent {
     overflow-y: auto;
     height: calc(100%);
+    transform: translateZ(0);// 用于开启硬件加速
 }
 </style>

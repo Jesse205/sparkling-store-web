@@ -47,7 +47,7 @@
                             <v-carousel-item v-for="item in appConfig.screenshot" :src="item"
                                 @click="screenshotOverlay = false" />
                         </v-carousel>
-                        <div class="screenshotModel">{{ screenshotModel }}</div>
+                        <!-- <div class="screenshotModel">{{ screenshotModel }}</div> -->
                     </v-overlay>
                 </div>
                 <div v-show="appConfig.introduction" class="py-2" style="white-space: pre-line;">
@@ -156,17 +156,18 @@ function onScreenshotClick(index) {
     display: flex;
     overflow-x: auto;
     // border-radius: 8px;
-    padding: 8px 0
+    padding: 8px 0;
+    transform: translateZ(0);
 }
 
-.screenshotModel {
+/* .screenshotModel {
     position: fixed;
     bottom: 16px;
     left: 0;
     right: 0;
     text-align: center;
     opacity: 0.6;
-}
+} */
 
 .header-right>.text-h6 {
     height: 2rem

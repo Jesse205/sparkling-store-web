@@ -40,11 +40,12 @@ fetch(mainStore.ALL_APPS_URL)
                 <v-card border rounded="lg" flat class="groupCard">
                     <v-row no-gutters cols="false">
                         <!-- eslint-disable-next-line vue/valid-v-for -->
-                        <v-col v-for="item in group.apps" v-ripple class="rounded-lg pa-2 text-center app-col">
-                            <v-card rounded="lg" class="icon">
-                                <v-img :src="item.icon" aspect-ratio="1" />
-                            </v-card>
-                            {{ item.name }}
+                        <v-col v-for="item in group.apps" class="app-col">
+                            <router-link :to="`/app/${item.packageName}`" v-ripple
+                                class="rounded-lg px-2 app-col-content text-center">
+                                <v-img :src="item.icon" class="icon elevation-1 rounded-lg" />
+                                <div class="appName text-center">{{ item.name }}</div>
+                            </router-link>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -63,13 +64,36 @@ fetch(mainStore.ALL_APPS_URL)
 }
 
 .icon {
-    margin: 8px;
+    margin: 8px auto;
+    margin-top: 0;
+    width: 80%;
+}
 
+.icon>img {
+    aspect-ratio: 1;
+    width: 100%;
+    height: 100%;
 }
 
 .app-col {
     width: calc(100%/4);
     flex: 0 0 calc(100%/4);
+}
+
+.appName {
+    display: block;
+    height: 40px;
+    overflow: hidden;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.15;
+}
+
+.app-col-content {
+    display: block;
+    padding-top: 8px;
+    color: rgba(var(--v-theme-on-background), var(--v-high-emphasis-opacity));
+    text-decoration: none;
 }
 
 @media(min-width: 600px) {
@@ -78,6 +102,7 @@ fetch(mainStore.ALL_APPS_URL)
         flex: 0 0 calc(100%/6);
     }
 }
+
 /* @media(min-width: 960px) {
     .app-col {
         width: calc(100%/8);
@@ -90,6 +115,7 @@ fetch(mainStore.ALL_APPS_URL)
         flex: 0 0 calc(100%/8);
     }
 }
+
 @media(min-width: 1904px) {
     .app-col {
         width: calc(100%/12);

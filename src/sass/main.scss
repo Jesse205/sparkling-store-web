@@ -50,19 +50,3 @@
 .v-list-item__append {
   height: 100%;
 }
-
-html {
-  overflow-y: hidden !important;
-}
-
-.v-main {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-}
-
-// 区域滚动
-.v-main>.mainContent {
-  overflow-y: auto;
-  height: calc(100%);
-}
