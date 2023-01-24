@@ -79,9 +79,9 @@ watch(page, () => {
 </template>
 
 <style scoped>
-@media (min-width: 960px) {
-    .container {
-        max-width: 900px !important;
+@media (min-width: 1280px) {
+    .v-container {
+        max-width: 1200px;
     }
 }
 </style>

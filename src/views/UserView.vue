@@ -6,12 +6,12 @@
         </v-app-bar>
         <AppMain>
             <v-container class="container list-item-primaryIcon">
-                <v-list>
-                    <v-list-item lines="two" title="用户昵称" :subtitle="userStore.name || '未命名'"
+                <v-list lines="two">
+                    <v-list-item title="用户昵称" :subtitle="userStore.name || '未命名'"
                         prepend-icon="mdi-account-outline" link />
-                    <v-list-item lines="two" title="电子邮箱" :subtitle="userStore.email || '未知'" link
+                    <v-list-item title="电子邮箱" :subtitle="userStore.email || '未知'" link
                         prepend-icon="mdi-email-outline" />
-                    <v-list-item lines="two" title="用户ID" :subtitle="userStore.uid || '未知'" link
+                    <v-list-item title="用户ID" :subtitle="userStore.uid || '未知'" link
                         prepend-icon="mdi-identifier" />
                 </v-list>
             </v-container>

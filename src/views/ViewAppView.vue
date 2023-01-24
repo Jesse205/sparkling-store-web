@@ -10,20 +10,24 @@
                 <!-- 顶部 -->
                 <div class="header py-2">
                     <!-- 图标 -->
-                    <v-avatar class="elevation-1" rounded="lg" size="96">
-                        <v-img :src="appConfig.icon" />
-                    </v-avatar>
+                    <v-img class="elevation-1 rounded-lg" :src="appConfig.icon" width="96" height="96" />
                     <div class="header-right ml-4">
                         <!-- 应用名 -->
-                        <span class="text-h6">{{ appConfig.name }}</span>
+                        <div class="text-h6">{{ appConfig.name }}</div>
                         <!-- 版本 -->
-                        <span class="text-subtitle-1 v-list-item-subtitle">
-                            {{ loaded? `${appConfig.version} (${appConfig.version_code})` : null}}</span>
-                        <v-btn class="downloadButton" variant="flat" color="primary" :disabled="!appConfig.download_url"
-                            :href="appConfig.download_url" target="_blank">下载应用</v-btn>
+                        <div class="text-subtitle-1">
+                            {{ loaded? `${appConfig.version} (${appConfig.version_code})` : null}}</div>
+                        <div>
+                            <v-btn class="downloadButton" variant="flat" :disabled="!appConfig.download_url"
+                                :href="appConfig.download_url" target="_blank">下载应用</v-btn>
+                            <v-btn class="watchButton" variant="text" @click="setWatched(!watched)">{{
+                                watched?'已关注':
+                                    '关注'
+                            }}</v-btn>
+                        </div>
                     </div>
                 </div>
-                <!-- 应用简介 -->
+                <!-- 一句话 -->
                 <div class="py-2">
                     <v-card v-show="(!loaded) || appConfig.summary" class="text-center summaryCard" variant="tonal">
                         <v-card-text>{{ appConfig.summary }}</v-card-text>
@@ -35,7 +39,7 @@
                     <div id="screenshotThumbnails" :style="{ 'min-height': screenshotHeight + 'px' }">
                         <!-- eslint-disable-next-line vue/valid-v-for -->
                         <v-img v-for="(item, index) in appConfig.screenshot"
-                            class="screenshotThumbnail mx-1 rounded-lg border" :height="screenshotHeight"
+                            class="screenshotThumbnail rounded-lg border" :height="screenshotHeight"
                             :width="screenshotHeight * appConfig.screenshot_ratio" @click="onScreenshotClick(index)"
                             :src="item" cover v-ripple />
                     </div>
@@ -54,22 +58,37 @@
                     <div class="title">介绍</div>
                     {{ appConfig.introduction }}
                 </div>
+                <div v-show="appConfig.developer" class="py-2">
+                    <div class="title">开发者</div>
+                    <v-list-item rounded="lg" lines="two" :title="appConfig.developer" link
+                        append-icon="mdi-chevron-right" :href="`https://cn.bing.com/search?q=${appConfig.developer}`" target="_blank">
+                        <template v-slot:prepend>
+                            <v-avatar class="border" size="40">
+                                <v-img src="/images/icon.svg" />
+                            </v-avatar>
+                        </template>
+                    </v-list-item>
+                </div>
                 <div v-if="loaded" class="py-2">
                     <div class="title">详情信息</div>
                     版本：{{ loaded && `${appConfig.version} (${appConfig.version_code})` }}<br />
-                    包名：{{ appConfig.package_name }}<br />
-                    开发者：{{ appConfig.developer }}<br />
+                    包名：{{ packageName }}<br />
+                    <!-- 开发者：{{ appConfig.developer || '未知' }}<br /> -->
+                    最低 SDK：{{ getAndroidVerNameByApi(appConfig.min_sdk) || '未知' }}<br />
+                    目标 SDK：{{ getAndroidVerNameByApi(appConfig.target_sdk) || '未知' }}<br />
                 </div>
+
             </v-container>
         </AppMain>
     </div>
 </template>
 
 <script setup>
-import { ref, inject, watch,  onActivated } from "vue";
+import { ref, inject, watch, onActivated } from "vue";
 import { useRoute, onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router";
 import { useTitle } from "@/events/title";
 import { useStore } from '@/store/index';
+import { getAndroidVerNameByApi } from "@/util/androidSdk";
 
 useTitle('应用浏览')
 
@@ -78,9 +97,12 @@ const appConfig = ref({})
 const route = useRoute()
 const loaded = ref(false)
 const appName = inject('appName')
+const packageName = ref()
+const watched = ref(false)
 
 const refresh = () => {
     if (route.params.packageName) {
+        //packageName.value = route.params.packageName
         let appConfigUrl = `${mainStore.APP_CONFIG_BASE_URL}/${route.params.packageName}.json`
         fetch(appConfigUrl)
             .then(response => response.json())
@@ -97,15 +119,29 @@ watch(() => route.params.packageName, refresh)
 function initConfig() {
     appConfig.value = {}
     loaded.value = false
+    //watched.value = false
+    if (route.params.packageName) {
+        packageName.value = route.params.packageName
+        let watchedList = JSON.parse(localStorage.getItem('watchedList'))
+        watched.value = false
+        if (watchedList) {
+            for (let index in watchedList) {
+                if (watchedList[index] == packageName.value) {
+                    watched.value = true
+                    break
+                }
+            }
+        }
+    }
 }
 
 onBeforeRouteLeave(() => {
-    console.log('Before route leave');
+    // console.log('Before route leave');
     screenshotOverlay.value = false
 })
 
 onBeforeRouteUpdate(() => {
-    console.log('Before route update');
+    // console.log('Before route update');
     initConfig()
 })
 
@@ -117,11 +153,24 @@ refresh()
 
 const screenshotModel = ref()
 const screenshotOverlay = ref(false)
-const screenshotHeight = 320
+const screenshotHeight = 240
 // onDeactivated(() => screenshotOverlay.value = false)
+
 function onScreenshotClick(index) {
     screenshotOverlay.value = true
     screenshotModel.value = index
+}
+
+
+function setWatched(state) {
+    watched.value = state
+    let packageName = appConfig.value.package_name
+    let watchedList = JSON.parse(localStorage.getItem('watchedList')) || []
+    if (state)
+        watchedList.push(packageName)
+    else
+        watchedList = watchedList.filter((item) => item != packageName)
+    localStorage.setItem('watchedList', JSON.stringify(watchedList))
 }
 
 </script>
@@ -144,12 +193,18 @@ function onScreenshotClick(index) {
     width: 100%;
 }
 
+.header-right>.text-h6 {
+    height: 2rem
+}
+
 .header-right>.text-subtitle-1 {
-    height: 1.75rem
+    height: 1.75rem;
+    opacity: 0.62;
 }
 
 .screenshotThumbnail {
     float: left;
+    margin: 0 4px;
 }
 
 #screenshotThumbnails {
@@ -169,14 +224,16 @@ function onScreenshotClick(index) {
     opacity: 0.6;
 } */
 
-.header-right>.text-h6 {
-    height: 2rem
-}
 
 .downloadButton {
     height: 32px;
     width: 96px;
-    // margin-top: 8px;
+    margin-right: 8px;
+}
+
+.watchButton {
+    height: 32px;
+    width: 64px;
 }
 
 .title {

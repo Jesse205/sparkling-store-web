@@ -23,7 +23,7 @@ fetch(mainStore.ALL_APPS_URL)
                     let packageName = appsGroupConfig[index]
                     appGroup.value.push(appsStore.getAppConfig(packageName))
                 }
-                apps.value.push({ name: groupConfig.name, apps: appGroup })
+                apps.value.push({ name: groupConfig.name, summary: groupConfig.summary, apps: appGroup })
             }
         }
     })
@@ -35,7 +35,8 @@ fetch(mainStore.ALL_APPS_URL)
 <template>
     <v-container class="py-2">
         <div v-for="group in apps" :key="group.name" class="group py-2">
-            <span class="text-h6">{{ group.name }}</span>
+            <div class="text-h6">{{ group.name }}</div>
+            <div class="text-subtitle-1" style="opacity: 0.62;">{{ group.summary }}</div>
             <v-lazy>
                 <v-card border rounded="lg" flat class="groupCard">
                     <v-row no-gutters cols="false">

@@ -10,6 +10,7 @@ const MainMeView = () => import('@/views/MainView/MainMeView.vue')
 const UploadView = () => import('@/views/UploadView.vue')
 const UserView = () => import('@/views/UserView.vue')
 const ViewAppView = () => import('@/views/ViewAppView.vue')
+const WatchedView = () => import('@/views/WatchedView.vue')
 
 const routes = [
   {
@@ -55,6 +56,11 @@ const routes = [
     path: '/user',
     name: 'User',
     component: UserView
+  },
+  {
+    path: '/watched',
+    name: 'Watched',
+    component: WatchedView
   },
   {
     path: '/app/:packageName',
